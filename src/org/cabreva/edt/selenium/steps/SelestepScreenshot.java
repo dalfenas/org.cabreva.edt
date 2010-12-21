@@ -1,7 +1,7 @@
 package org.cabreva.edt.selenium.steps;
 
 import org.cabreva.edt.EDTAbortException;
-import org.cabreva.edt.EDTTestCase;
+import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
 import org.cabreva.edt.EDTTestStep;
 import org.cabreva.edt.selenium.SeleniumTransaction;
@@ -25,8 +25,8 @@ public class SelestepScreenshot extends EDTTestStep {
 	}
 
 	@Override
-	public void run(EDTTestCase context) throws EDTException, EDTAbortException {
-		String inputFileName = context.getTestCaseFile().getName();
+	public void run(EDTContext context) throws EDTException, EDTAbortException {
+		String inputFileName = context.getTestCase().getTestCaseFile().getName();
 		StringBuffer outputFullFileName = new StringBuffer(context.getOutputFolder());
 		outputFullFileName.append("/").append(inputFileName.substring(0, inputFileName.length() - 4)).append(".png");
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cabreva.edt.EDTAbortException;
-import org.cabreva.edt.EDTTestCase;
+import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
 import org.cabreva.edt.EDTField;
 import org.cabreva.edt.EDTFieldGroup;
@@ -44,9 +44,9 @@ public class SelestepFillData extends EDTTestStep {
 	}
 
 	@Override
-	public void run(EDTTestCase context) throws EDTException, EDTAbortException {
+	public void run(EDTContext context) throws EDTException, EDTAbortException {
 		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
-		EDTFieldGroup group = context.getFieldsGroupByName(fieldsGroupName);
+		EDTFieldGroup group = context.getTestCase().getFieldsGroupByName(fieldsGroupName);
 		for (String fieldName : fieldsNames) {
 			String value = group.getFieldValue(fieldName);
 			try {

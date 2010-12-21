@@ -1,7 +1,7 @@
 package org.cabreva.edt.selenium.steps;
 
 import org.cabreva.edt.EDTAbortException;
-import org.cabreva.edt.EDTTestCase;
+import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
 import org.cabreva.edt.EDTTestStep;
 import org.cabreva.edt.selenium.SeleniumTransaction;
@@ -26,7 +26,7 @@ public class SelestepClickAndWait extends EDTTestStep {
 	}
 
 	@Override
-	public void run(EDTTestCase context) throws EDTException, EDTAbortException {
+	public void run(EDTContext context) throws EDTException, EDTAbortException {
 		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
 		try {
 			selenese.click(buttonName);

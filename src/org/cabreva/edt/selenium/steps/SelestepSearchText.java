@@ -1,7 +1,7 @@
 package org.cabreva.edt.selenium.steps;
 
 import org.cabreva.edt.EDTAbortException;
-import org.cabreva.edt.EDTTestCase;
+import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
 import org.cabreva.edt.selenium.SeleniumTransaction;
 import org.cabreva.edt.steps.BooleanStep;
@@ -27,7 +27,7 @@ public class SelestepSearchText extends BooleanStep {
 	}
 
 	@Override
-	public void run(EDTTestCase context) throws EDTException, EDTAbortException {
+	public void run(EDTContext context) throws EDTException, EDTAbortException {
 		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
 		try {
 			if (selenese.isTextPresent(text)) {

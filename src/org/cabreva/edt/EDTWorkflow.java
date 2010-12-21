@@ -33,7 +33,7 @@ public class EDTWorkflow {
 		processFlow = parse(root.getChild("process"));
 	}
 
-	public void init(EDTTestCase context) throws EDTException {
+	public void init(EDTContext context) throws EDTException {
 		try {
 			initFlow.run(context);
 		} catch (EDTAbortException e) {
@@ -42,11 +42,12 @@ public class EDTWorkflow {
 		}
 	}
 
-	public void run(EDTTestCase context) throws IOException {
+	public void run(EDTContext context) throws IOException {
+		EDTTestCase testCase = context.getTestCase();
 		try {
 			processFlow.run(context);
 		} catch (EDTException e) {
-			Element outputRoot = context.getOutputRoot();
+			Element outputRoot = testCase.getOutputRoot();
 			Element system = new Element("system");
 			system.setAttribute("status", ReportStatusStep.SYSTEM_STATUS_UNEXPECTED);
 			Element msg = new Element("message");
@@ -57,7 +58,7 @@ public class EDTWorkflow {
 		} catch (EDTAbortException e) {
 			// nothing to do.
 		} 
-		save(new Document(context.getOutputRoot()), context.getOutputFolder() + "/"  + context.getTestCaseFile().getName());
+		save(new Document(testCase.getOutputRoot()), context.getOutputFolder() + "/"  + testCase.getTestCaseFile().getName());
 	}
 
 	public String getName() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cabreva.edt.EDTAbortException;
-import org.cabreva.edt.EDTTestCase;
+import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
 import org.cabreva.edt.EDTFieldGroup;
 import org.cabreva.edt.EDTTestStep;
@@ -17,7 +17,7 @@ import org.jdom.Element;
 public class StepsGroup extends EDTTestStep {
 
 	private List<EDTTestStep> steps;
-	private List<EDTFieldGroup> fieldsGroups;
+	private List<EDTFieldGroup> fieldsGroups = null;
 	
 	public StepsGroup(Element node, List<EDTFieldGroup> dataGroups) {
 		super();
@@ -57,7 +57,7 @@ public class StepsGroup extends EDTTestStep {
 	}
 
 	@Override
-	public void run(EDTTestCase context) throws EDTException, EDTAbortException {
+	public void run(EDTContext context) throws EDTException, EDTAbortException {
 		for(EDTTestStep step: steps) {
 			step.run(context);
 		}

@@ -15,20 +15,16 @@ public class EDTTestCase {
 	public final static String TEST_TYPE_POSITIVE = "P";
 	public final static String TEST_TYPE_NEGATIVE = "N";
 	
-	private EDTTransaction transaction;
 	private List<EDTFieldGroup> fieldsGroup;
 	private String workflowName;
 	private Boolean positive;
 	private File testCaseFile;
-	private String outputFolder;
 	private Element outputRoot;
-
-	public EDTTestCase(EDTTransaction transaction, File file, String outputFolder) throws JDOMException, IOException {
+	
+	
+	public EDTTestCase(File file) throws JDOMException, IOException {
 		super();
-		this.transaction = transaction;
 		this.testCaseFile = file;
-		this.outputFolder = outputFolder;
-
 		SAXBuilder builder = new SAXBuilder();
 		Document doc = builder.build(file.getAbsoluteFile());
 		Element root = doc.getRootElement();
@@ -50,7 +46,7 @@ public class EDTTestCase {
 			fieldsGroup.add(new EDTFieldGroup(groupElement.getAttributeValue("name"), fields));
 		}
 		
-		outputRoot = new Element("testCase");
+		outputRoot = new Element("testCase");		
 	}
 
 	public Boolean isPositive() {
@@ -64,14 +60,6 @@ public class EDTTestCase {
 	public String getWorkflowName() {
 		return workflowName;
 	}
-
-	public EDTTransaction getTransaction() {
-		return transaction;
-	}
-
-	public String getOutputFolder() {
-		return outputFolder;
-	}
 	
 	public Element getOutputRoot() {
 		return outputRoot;
@@ -84,6 +72,5 @@ public class EDTTestCase {
 			}
 		}
 		return null;
-	}
-
+	}	
 }

@@ -1,8 +1,9 @@
 package org.cabreva.edt.steps;
 
 import org.cabreva.edt.EDTAbortException;
-import org.cabreva.edt.EDTTestCase;
+import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
+import org.cabreva.edt.EDTTestCase;
 import org.cabreva.edt.EDTTestStep;
 import org.jdom.Element;
 
@@ -32,8 +33,9 @@ public class ReportStatusStep extends EDTTestStep {
 	}
 
 	@Override
-	public void run(EDTTestCase context) throws EDTException, EDTAbortException {
-		Element outputRoot = context.getOutputRoot();
+	public void run(EDTContext context) throws EDTException, EDTAbortException {
+		EDTTestCase testCase = context.getTestCase(); 
+		Element outputRoot = testCase.getOutputRoot();
 		Element system = new Element("system");
 		system.setAttribute("status",systemStatus);
 		Element msg = new Element("message");
@@ -46,13 +48,13 @@ public class ReportStatusStep extends EDTTestStep {
 		if(SYSTEM_STATUS_UNEXPECTED.equalsIgnoreCase(systemStatus)) {
 			outputRoot.setAttribute("result",TEST_RESULT_NOK);
 		} else if (SYSTEM_STATUS_FAILURE.equalsIgnoreCase(systemStatus)) {
-			if(context.isPositive()) {
+			if(testCase.isPositive()) {
 				outputRoot.setAttribute("result",TEST_RESULT_NOK);
 			} else {
 				outputRoot.setAttribute("result",TEST_RESULT_OK);
 			}
 		} else if (SYSTEM_STATUS_SUCCESS.equalsIgnoreCase(systemStatus)) {
-			if(context.isPositive()) {
+			if(testCase.isPositive()) {
 				outputRoot.setAttribute("result",TEST_RESULT_OK);
 			} else {
 				outputRoot.setAttribute("result",TEST_RESULT_NOK);

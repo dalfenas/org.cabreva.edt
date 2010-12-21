@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import org.cabreva.edt.EDTContext;
+import org.cabreva.edt.EDTException;
 import org.cabreva.edt.EDTTestCase;
 import org.cabreva.edt.EDTTransaction;
 import org.cabreva.edt.EDTWorkflow;
@@ -47,9 +49,10 @@ public class TesteCommand {
 		}
 	}
 
-	private EDTTestCase createTestCase(EDTTransaction transaction, File file) {
+	private EDTContext createContextForTestCase(EDTTransaction transaction, File file) {
 		try {
-			return new EDTTestCase(transaction, file, parametros.getFolderOut());
+			EDTTestCase testCase = new EDTTestCase(file);
+			return new EDTContext(transaction, parametros.getFolderOut(), testCase);
 		} catch (JDOMException e) {
 			JOptionPane.showMessageDialog(null, "Error while parsing XML file '" + file.getName()
 					+ "'. Original exception message:/n" + e.getMessage(), "Erro na leitura do test case",
@@ -94,15 +97,29 @@ public class TesteCommand {
 			}
 		});
 		
+		// initicamos a transação
 		EDTTransaction transaction = new SeleniumTransaction();
 		transaction.start();
-		// TODO: init workflow
 		
+		// iniciamos os "workflows"
+		EDTContext workflowContext = new EDTContext(transaction, parametros.getFolderOut());
+		for(EDTWorkflow wf: wflist){
+			try {
+				wf.init(workflowContext);
+			} catch (EDTException e) {
+				JOptionPane.showMessageDialog(null, "Error while starting workflow '" + wf.getName()
+						+ "'. Original exception message:/n" + e.getMessage(), "Erro no processamento do workflow",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		}
+		
+		// rodamos os test cases
 		for (int i = 0; i < listOfTestCases.length; i++) {
 			if (listOfTestCases[i].isFile()) {
-				EDTTestCase context = createTestCase(transaction, listOfTestCases[i]);
+				EDTContext context = createContextForTestCase(transaction, listOfTestCases[i]);
 				if(context==null) return;
-				String wfname = context.getWorkflowName();
+				String wfname = context.getTestCase().getWorkflowName();
 				for(EDTWorkflow wf:wflist) {
 					if(wf.getName().equalsIgnoreCase(wfname)) {
 						try {
