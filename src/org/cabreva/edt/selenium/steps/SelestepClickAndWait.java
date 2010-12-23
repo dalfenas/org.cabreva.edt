@@ -30,6 +30,7 @@ public class SelestepClickAndWait extends EDTTestStep {
 		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
 		try {
 			selenese.click(buttonName);
+			selenese.waitForPageToLoad("2000");
 		} catch (Exception e) {
 			throw new EDTException("Selenium exception while clicking button (btn name: " + buttonName + ")", e);
 		}

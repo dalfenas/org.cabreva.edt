@@ -35,6 +35,7 @@ public class TesteCommand {
 			Document doc = builder.build(file.getAbsoluteFile());
 			EDTWorkflow workflow = new EDTWorkflow();
 			workflow.parseRoot(doc.getRootElement());
+			doc.detachRootElement();
 			return workflow;
 		} catch (JDOMException e) {
 			JOptionPane.showMessageDialog(null, "Error while parsing XML file '" + file.getName()
