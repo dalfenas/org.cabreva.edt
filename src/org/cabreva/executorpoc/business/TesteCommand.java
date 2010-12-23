@@ -107,8 +107,13 @@ public class TesteCommand {
 			try {
 				wf.init(workflowContext);
 			} catch (EDTException e) {
+				transaction.stop();
+				String message = "";
+				if(e.getCause()!=null) {
+					message = "'. Original exception message:\n" + e.getCause().getMessage();
+				}
 				JOptionPane.showMessageDialog(null, "Error while starting workflow '" + wf.getName()
-						+ "'. Original exception message:\n" + e.getMessage(), "Erro no processamento do workflow",
+						+ message, "Erro no processamento do workflow",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -124,7 +129,9 @@ public class TesteCommand {
 					if(wf.getName().equalsIgnoreCase(wfname)) {
 						try {
 							wf.run(context);
+							transaction.stop();
 						} catch (IOException e) {
+							transaction.stop();
 							JOptionPane.showMessageDialog(null, "Error while writing file '" + listOfTestCases[i].getName()
 									+ "'. Original exception message:\n" + e.getMessage(), "Erro no processamento do test case",
 									JOptionPane.ERROR_MESSAGE);

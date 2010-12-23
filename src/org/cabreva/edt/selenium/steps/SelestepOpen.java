@@ -29,7 +29,7 @@ public class SelestepOpen extends EDTTestStep {
 	public void run(EDTContext context) throws EDTException, EDTAbortException {
 		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
 		try {
-			//selenese.open(addressToOpen);
+			selenese.open(addressToOpen);
 			selenese.waitForPageToLoad("2000");
 		} catch (Exception e) {
 			throw new EDTException("Selenium exception while opening addres: " + addressToOpen, e);
