@@ -38,12 +38,12 @@ public class TesteCommand {
 			return workflow;
 		} catch (JDOMException e) {
 			JOptionPane.showMessageDialog(null, "Error while parsing XML file '" + file.getName()
-					+ "'. Original exception message:/n" + e.getMessage(), "Erro na leitura do workflow",
+					+ "'. Original exception message:\n" + e.getMessage(), "Erro na leitura do workflow",
 					JOptionPane.ERROR_MESSAGE);
 			return null;
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Error (IOException) while reading file '" + file.getName()
-					+ "'. Original exception message:/n" + e.getMessage(), "Erro na leitura do workflow",
+					+ "'. Original exception message:\n" + e.getMessage(), "Erro na leitura do workflow",
 					JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
@@ -55,12 +55,12 @@ public class TesteCommand {
 			return new EDTContext(transaction, parametros.getFolderOut(), testCase);
 		} catch (JDOMException e) {
 			JOptionPane.showMessageDialog(null, "Error while parsing XML file '" + file.getName()
-					+ "'. Original exception message:/n" + e.getMessage(), "Erro na leitura do test case",
+					+ "'. Original exception message:\n" + e.getMessage(), "Erro na leitura do test case",
 					JOptionPane.ERROR_MESSAGE);
 			return null;
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Error (IOException) while reading file '" + file.getName()
-					+ "'. Original exception message:/n" + e.getMessage(), "Erro na leitura do test case",
+					+ "'. Original exception message:\n" + e.getMessage(), "Erro na leitura do test case",
 					JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
@@ -108,7 +108,7 @@ public class TesteCommand {
 				wf.init(workflowContext);
 			} catch (EDTException e) {
 				JOptionPane.showMessageDialog(null, "Error while starting workflow '" + wf.getName()
-						+ "'. Original exception message:/n" + e.getMessage(), "Erro no processamento do workflow",
+						+ "'. Original exception message:\n" + e.getMessage(), "Erro no processamento do workflow",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -126,7 +126,7 @@ public class TesteCommand {
 							wf.run(context);
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, "Error while writing file '" + listOfTestCases[i].getName()
-									+ "'. Original exception message:/n" + e.getMessage(), "Erro no processamento do test case",
+									+ "'. Original exception message:\n" + e.getMessage(), "Erro no processamento do test case",
 									JOptionPane.ERROR_MESSAGE);
 							return;
 						}

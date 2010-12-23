@@ -1,5 +1,6 @@
 package org.cabreva.edt.steps;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.cabreva.edt.EDTAbortException;
@@ -18,7 +19,7 @@ import org.jdom.Element;
  */
 public class CheckPositive extends EDTTestStep {
 
-	private List<BooleanStep> conditions;
+	private List<BooleanStep> conditions = new ArrayList<BooleanStep>();
 	private StepsGroup subFlow;
 	private List<EDTFieldGroup> fieldsGroups;
 
