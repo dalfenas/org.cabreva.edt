@@ -37,7 +37,9 @@ public class StepsGroup extends EDTTestStep {
 			String childNodeName = child.getName();
 			if(childNodeName.equalsIgnoreCase(SelestepFillData.NODE_NAME)) {
 				steps.add(new SelestepFillData(child, fieldsGroups));
-			} else if(childNodeName.equalsIgnoreCase(SelestepClickAndWait.NODE_NAME)) {
+			} else if (childNodeName.equalsIgnoreCase(CleanOutputStep.NODE_NAME)){
+				steps.add(new CleanOutputStep());
+			}else if(childNodeName.equalsIgnoreCase(SelestepClickAndWait.NODE_NAME)) {
 				steps.add(new SelestepClickAndWait(child));
 			} else if(childNodeName.equalsIgnoreCase(SelestepOpen.NODE_NAME)) {
 				steps.add(new SelestepOpen(child));

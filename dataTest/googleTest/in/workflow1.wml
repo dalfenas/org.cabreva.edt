@@ -1,0 +1,46 @@
+                                          
+<workflow  name='w1'>
+ <init>
+	<cleanOutput/>
+ </init>
+
+ <dataGroup name='ptbrsearch'>
+  <field name='q' type='text'/>
+ </dataGroup>
+
+ <process>
+    <navigate2 url='http://www.google.com.br/'/>
+    <typeDataGroup name='ptbrsearch' />
+    <press btn='btnG' />
+    <checkPositive>
+       <condition>
+	<textSearch text='did not match' />
+       </condition>
+       <script>
+         <report systemStatus='fail'>
+          'n&#227;o encontrou nenhum documento ' text found 
+	 </report>
+         <abort />
+       </script>
+    </checkPositive>
+
+    <checkPositive>
+       <condition>
+	<textSearch text='Resultados para' />
+       </condition>
+       <script>
+         <report systemStatus='success'>
+          'Showing results for' found
+	 </report>
+	 <screenshot />
+         <abort />
+       </script>
+    </checkPositive>
+
+    <report systemStatus='unexpected' />
+    <screenshot />
+
+ </process>
+
+ 
+</workflow>

@@ -1,0 +1,8 @@
+<testCase type='p'>
+	<workflow name='w1' />
+	<parameters>
+		<dataGroup name='ptbrsearch'>
+			<field name='q' value='cabreva' /> 
+		</dataGroup>
+	</parameters>
+</testCase>
