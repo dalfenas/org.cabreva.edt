@@ -45,23 +45,24 @@ public class SelestepFillData extends EDTTestStep {
     public void run(EDTContext context) throws EDTException, EDTAbortException {
         Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
         EDTFieldGroup group = context.getTestCase().getFieldsGroupByName(fieldsGroupName);
-        //lrb for (String fieldName : fieldsNames) {
-        for (EDTField fieldName : fieldGroup.getFields()) {
-            String value = group.getFieldValue(fieldName.getId());
-            if (fieldName.getType().equals(EDTField.TypeField.TEXT)) {
+        
+        for (EDTField field : fieldGroup.getFields()) {
+            String value = group.getFieldValue(field.getId());
+            if (field.getType().equals(EDTField.TypeField.TEXT)) {
                 try {
-                    selenese.type(fieldName.getValue(), value);
+                    selenese.type(field.getId(), value);
                 } catch (Exception e) {
                     throw new EDTException("Selenium exception while typing value (" + value + ") in this field: "
-                            + fieldName, e);
+                            + field, e);
                 }
-            }
-            if (fieldName.getType().equals(EDTField.TypeField.SELECT)) {
-                try {
-                    selenese.select(fieldName.getValue(), value);
-                } catch (Exception e) {
-                    throw new EDTException("Selenium exception while select value (" + value + ") in this field: "
-                            + fieldName, e);
+            } else {
+                if (field.getType().equals(EDTField.TypeField.SELECT)) {
+                    try {
+                        selenese.select(field.getValue(), value);
+                    } catch (Exception e) {
+                        throw new EDTException("Selenium exception while select value (" + value + ") in this field: "
+                                + field, e);
+                    }
                 }
             }
         }
