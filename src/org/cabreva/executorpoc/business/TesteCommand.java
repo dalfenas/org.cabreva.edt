@@ -130,7 +130,6 @@ public class TesteCommand {
 					if(wf.getName().equalsIgnoreCase(wfname)) {
 						try {
 							wf.run(context);
-							transaction.stop();
 						} catch (IOException e) {
 							transaction.stop();
 							JOptionPane.showMessageDialog(null, "Error while writing file '" + listOfTestCases[i].getName()
