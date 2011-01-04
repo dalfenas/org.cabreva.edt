@@ -14,11 +14,11 @@
     <press btn='btnG' />
     <checkPositive>
        <condition>
-	<textSearch text='did not match' />
+	<textSearch text='n&#227;o encontrou nenhum documento' />
        </condition>
        <script>
          <report systemStatus='fail'>
-          'n&#227;o encontrou nenhum documento ' text found 
+          'nao encontrou nenhum documento' text found 
 	 </report>
          <abort />
        </script>
@@ -30,7 +30,7 @@
        </condition>
        <script>
          <report systemStatus='success'>
-          'Showing results for' found
+          'Resultados para' found
 	 </report>
 	 <screenshot />
          <abort />
