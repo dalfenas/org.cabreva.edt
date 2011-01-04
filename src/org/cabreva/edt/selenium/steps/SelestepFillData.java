@@ -56,7 +56,7 @@ public class SelestepFillData extends EDTTestStep {
                 }
             } else if (field.getType().equals(EDTField.TypeField.SELECT)) {
                 try {
-                    selenese.select(field.getValue(), value);
+                    selenese.select(field.getId(), value);
                 } catch (Exception e) {
                     throw new EDTException("Selenium exception while select value (" + value + ") in this field: "
                             + field, e);

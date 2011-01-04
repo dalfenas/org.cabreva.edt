@@ -30,7 +30,7 @@ public class SelestepOpen extends EDTTestStep {
 		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
 		try {
 			selenese.open(addressToOpen);
-			selenese.waitForPageToLoad("5000");
+			selenese.waitForPageToLoad("2000");
 		} catch (Exception e) {
 			throw new EDTException("Selenium exception while opening addres: " + addressToOpen, e);
 		}
