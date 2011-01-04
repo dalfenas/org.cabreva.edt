@@ -1,0 +1,10 @@
+<testCase type='p'>
+	<workflow name='wAuto' />
+	<parameters>
+		<dataGroup name='defaultSearchEnglish'>
+			<field name='cboTipoCarro' value='Carros novos' /> 
+			<field name='cboMarca' value='FORD' /> 
+			<field name='cboModelo' value='ECOSPORT' /> 
+		</dataGroup>
+	</parameters>
+</testCase>
