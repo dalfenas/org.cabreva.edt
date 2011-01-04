@@ -9,7 +9,7 @@
  <process>
     <navigate2 url='http://br.autos.yahoo.com/'/>
     <typeDataGroup name='defaultSearchEnglish' />
-    <press btn='btnBuscar' />
+    <press btn='btnBuscar' timeOutforPopUp = '2000' />
     <checkPositive>
        <condition>
 	<textSearch text='did not match' />
