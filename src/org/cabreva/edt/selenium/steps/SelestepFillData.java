@@ -1,6 +1,5 @@
 package org.cabreva.edt.selenium.steps;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.cabreva.edt.EDTAbortException;
@@ -45,7 +44,7 @@ public class SelestepFillData extends EDTTestStep {
     public void run(EDTContext context) throws EDTException, EDTAbortException {
         Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
         EDTFieldGroup group = context.getTestCase().getFieldsGroupByName(fieldsGroupName);
-        
+
         for (EDTField field : fieldGroup.getFields()) {
             String value = group.getFieldValue(field.getId());
             if (field.getType().equals(EDTField.TypeField.TEXT)) {
@@ -55,16 +54,15 @@ public class SelestepFillData extends EDTTestStep {
                     throw new EDTException("Selenium exception while typing value (" + value + ") in this field: "
                             + field, e);
                 }
-            } else {
-                if (field.getType().equals(EDTField.TypeField.SELECT)) {
-                    try {
-                        selenese.select(field.getValue(), value);
-                    } catch (Exception e) {
-                        throw new EDTException("Selenium exception while select value (" + value + ") in this field: "
-                                + field, e);
-                    }
+            } else if (field.getType().equals(EDTField.TypeField.SELECT)) {
+                try {
+                    selenese.select(field.getValue(), value);
+                } catch (Exception e) {
+                    throw new EDTException("Selenium exception while select value (" + value + ") in this field: "
+                            + field, e);
                 }
             }
+
         }
 
     }
