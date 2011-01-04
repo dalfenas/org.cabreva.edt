@@ -70,15 +70,17 @@ public class EDTWorkflow {
 	}
 
 	private EDTFieldGroup parseDataFieldGroup(Element dataGroupElement) {
-		String name = dataGroupElement.getAttributeValue("name");
+		String name = dataGroupElement.getAttributeValue("name");                
 
 		@SuppressWarnings("unchecked")
 		List<Element> fieldElements = dataGroupElement.getChildren("field");
 		List<EDTField> fields = new ArrayList<EDTField>();
 
-		for (Element e : fieldElements) {
-			EDTField field = new EDTField(e.getAttributeValue("name"));
-			fields.add(field);
+                for (Element e : fieldElements) {
+                    EDTField.TypeField t = EDTField.TypeField.fromString(e.getAttributeValue("type"));
+		    EDTField field = new EDTField(e.getAttributeValue("name"),t);
+
+                    fields.add(field);
 		}
 
 		return new EDTFieldGroup(name, fields);

@@ -4,6 +4,31 @@ public class EDTField {
 
 	private String id;
 	private String value;
+        private TypeField type;
+
+        public enum TypeField {
+            TEXT("text"),
+            SELECT("select");
+            
+            private String id;
+            
+            private TypeField(String id) {
+                this.id = id;
+            }
+
+           /* public String toString() {
+                return id;
+            }*/
+
+            public static TypeField fromString(String item) {
+                for (TypeField field : values()) {
+                    if (field.id.equalsIgnoreCase(item)){
+                        return field;
+                    }
+                }
+                return null;
+            }
+        }
 	
 	public EDTField() {
 		
@@ -19,6 +44,13 @@ public class EDTField {
 		this.id = id;
 		this.value = value;
 	}
+
+        public EDTField(String id, TypeField type) {
+                super();
+                this.id = id;
+                this.type = type;
+        }
+        
 	public String getId() {
 		return id;
 	}
@@ -31,7 +63,13 @@ public class EDTField {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
-	
+
+        public TypeField getType() {
+            return type;
+        }
+
+        public void setType(TypeField type) {
+            this.type = type;
+        }	
 	
 }
