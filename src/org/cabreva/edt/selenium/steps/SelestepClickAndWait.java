@@ -12,6 +12,8 @@ import com.thoughtworks.selenium.Selenium;
 public class SelestepClickAndWait extends EDTTestStep {
 
 	private String buttonName;
+        private String timeoutPopup;
+        private String timeoutPage;
 	
 	public static String NODE_NAME = "press";
 
@@ -23,6 +25,8 @@ public class SelestepClickAndWait extends EDTTestStep {
 	@Override
 	public void fill(Element node) {
 		buttonName = node.getAttributeValue("btn");
+                timeoutPopup = node.getAttributeValue("timeOutforPopUp");
+                timeoutPage = node.getAttributeValue("timeOutforPage");
 	}
 
 	@Override
@@ -30,7 +34,13 @@ public class SelestepClickAndWait extends EDTTestStep {
 		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
 		try {
 			selenese.click(buttonName);
-			selenese.waitForPageToLoad("4000");
+                        if (timeoutPage != null) {
+                            selenese.waitForPageToLoad(timeoutPage);
+                        }
+                        else if(timeoutPopup != null) {
+                            selenese.waitForPopUp("nome_da_janela",timeoutPopup);
+                            selenese.selectWindow("name=nome_da_janela");
+                        }
 		} catch (Exception e) {
 			throw new EDTException("Selenium exception while clicking button (btn name: " + buttonName + ")", e);
 		}

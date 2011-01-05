@@ -29,9 +29,9 @@ public class SelecionarFolderFrame extends JFrame {
 
 		contentPane = new JPanel();
 
-		JLabel jlblIn = new JLabel("Diretório que contém os cenários de teste em XML:");
+		JLabel jlblIn = new JLabel("Diretï¿½rio que contï¿½m os cenï¿½rios de teste em XML:");
 		txtFolderIn = new JTextField(58);
-		JLabel jlblOut = new JLabel("Diretório onde serão salvas as screenshots:");
+		JLabel jlblOut = new JLabel("Diretï¿½rio onde serï¿½o salvas as screenshots:");
 		txtFolderOut = new JTextField(58);
 		JButton button = new JButton("Iniciar teste");
 
@@ -49,7 +49,7 @@ public class SelecionarFolderFrame extends JFrame {
 				String folderIn = txtFolderIn.getText();
 				String folderOut = txtFolderOut.getText();
 				if (folderIn.trim().isEmpty() || folderOut.trim().isEmpty()) {
-					JOptionPane.showMessageDialog(contentPane, "Ambos diretórios de saída e entrada precisam ser fornecidos",
+					JOptionPane.showMessageDialog(contentPane, "Ambos diretï¿½rios de saï¿½da e entrada precisam ser fornecidos",
 							"Executor", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
