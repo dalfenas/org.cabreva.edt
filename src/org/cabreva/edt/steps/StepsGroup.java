@@ -10,6 +10,7 @@ import org.cabreva.edt.EDTFieldGroup;
 import org.cabreva.edt.EDTTestStep;
 import org.cabreva.edt.selenium.steps.SelestepClickAndWait;
 import org.cabreva.edt.selenium.steps.SelestepFillData;
+import org.cabreva.edt.selenium.steps.SelestepFillField;
 import org.cabreva.edt.selenium.steps.SelestepOpen;
 import org.cabreva.edt.selenium.steps.SelestepScreenshot;
 import org.jdom.Element;
@@ -39,6 +40,8 @@ public class StepsGroup extends EDTTestStep {
 				steps.add(new SelestepFillData(child, fieldsGroups));
 			} else if (childNodeName.equalsIgnoreCase(CleanOutputStep.NODE_NAME)){
 				steps.add(new CleanOutputStep());
+			} else if (childNodeName.equalsIgnoreCase(SelestepFillField.NODE_NAME)){
+				steps.add(new SelestepFillField(child));	
 			}else if(childNodeName.equalsIgnoreCase(SelestepClickAndWait.NODE_NAME)) {
 				steps.add(new SelestepClickAndWait(child));
 			} else if(childNodeName.equalsIgnoreCase(SelestepOpen.NODE_NAME)) {
