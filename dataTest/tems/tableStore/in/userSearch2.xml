@@ -1,0 +1,8 @@
+<testCase type='p'>
+	<workflow name='w1' />
+	<parameters>
+		<dataGroup name='userSearch'>
+			<field name='fullname' value='Admin' /> 
+		</dataGroup>
+	</parameters>
+</testCase>

@@ -8,6 +8,7 @@ import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
 import org.cabreva.edt.EDTFieldGroup;
 import org.cabreva.edt.EDTTestStep;
+import org.cabreva.edt.selenium.steps.SelestepTableSearch;
 import org.cabreva.edt.selenium.steps.SelestepSearchText;
 import org.jdom.Element;
 
@@ -33,16 +34,18 @@ public class CheckPositive extends EDTTestStep {
 
 	@Override
 	public void fill(Element node) {
-		
+
 		@SuppressWarnings("unchecked")
 		List<Element> elements = node.getChild("condition").getChildren();
-		
-		for(Element e:elements) {
-			if(e.getName().equalsIgnoreCase( SelestepSearchText.NODE_NAME )) {
+
+		for (Element e : elements) {
+			if (e.getName().equalsIgnoreCase(SelestepSearchText.NODE_NAME)) {
 				conditions.add(new SelestepSearchText(e));
+			} else if (e.getName().equalsIgnoreCase(SelestepTableSearch.NODE_NAME)) {
+				conditions.add(new SelestepTableSearch(e));
 			}
 		}
-		
+
 		subFlow = new StepsGroup(node.getChild("script"), fieldsGroups);
 
 	}

@@ -1,0 +1,44 @@
+                                         
+<workflow  name='wAuto'>
+ <init />
+ <dataGroup name='defaultSearchEnglish'>
+  <field name='cboTipoCarro' type='select' fillOrder='1' delayAfter='10' />
+  <field name='cboMarca' type='select'/>
+  <field name='cboModelo' type='select'/>
+ </dataGroup>
+ <process>
+    <navigate2 url='http://br.autos.yahoo.com/'/>
+    <typeDataGroup name='defaultSearchEnglish' />
+    <press btn='btnBuscar' />
+    <checkPositive>
+       <condition>
+	<textSearch text='did not match' />
+       </condition>
+       <script>
+         <report systemStatus='fail'>
+          'did not match' text found 
+	 </report>
+         <abort />
+       </script>
+    </checkPositive>
+
+    <checkPositive>
+       <condition>
+	<textSearch text='Veja abaixo os resultados' />
+       </condition>
+       <script>
+         <report systemStatus='success'>
+          'Showing results for' found
+	 </report>
+	 <screenshot />
+         <abort />
+       </script>
+    </checkPositive>
+
+    <report systemStatus='unexpected' />
+    <screenshot />
+
+ </process>
+
+ 
+</workflow>

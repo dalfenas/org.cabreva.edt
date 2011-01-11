@@ -19,42 +19,42 @@ public class StepsGroup extends EDTTestStep {
 
 	private List<EDTTestStep> steps;
 	private List<EDTFieldGroup> fieldsGroups = null;
-	
+
 	public StepsGroup(Element node, List<EDTFieldGroup> dataGroups) {
 		super();
-		this.fieldsGroups=dataGroups;
+		this.fieldsGroups = dataGroups;
 		fill(node);
 	}
-	
+
 	@Override
 	public void fill(Element node) {
-		
+
 		steps = new ArrayList<EDTTestStep>();
-		
+
 		@SuppressWarnings("unchecked")
 		List<Element> children = node.getChildren();
-		
-		for(Element child: children) {
+
+		for (Element child : children) {
 			String childNodeName = child.getName();
-			if(childNodeName.equalsIgnoreCase(SelestepFillData.NODE_NAME)) {
+			if (childNodeName.equalsIgnoreCase(SelestepFillData.NODE_NAME)) {
 				steps.add(new SelestepFillData(child, fieldsGroups));
-			} else if (childNodeName.equalsIgnoreCase(CleanOutputStep.NODE_NAME)){
+			} else if (childNodeName.equalsIgnoreCase(CleanOutputStep.NODE_NAME)) {
 				steps.add(new CleanOutputStep());
-			} else if (childNodeName.equalsIgnoreCase(SelestepFillField.NODE_NAME)){
-				steps.add(new SelestepFillField(child));	
-			}else if(childNodeName.equalsIgnoreCase(SelestepClickAndWait.NODE_NAME)) {
+			} else if (childNodeName.equalsIgnoreCase(SelestepFillField.NODE_NAME)) {
+				steps.add(new SelestepFillField(child));
+			} else if (childNodeName.equalsIgnoreCase(SelestepClickAndWait.NODE_NAME)) {
 				steps.add(new SelestepClickAndWait(child));
-			} else if(childNodeName.equalsIgnoreCase(SelestepOpen.NODE_NAME)) {
+			} else if (childNodeName.equalsIgnoreCase(SelestepOpen.NODE_NAME)) {
 				steps.add(new SelestepOpen(child));
-			} else if(childNodeName.equalsIgnoreCase(CheckNegative.NODE_NAME)) {
+			} else if (childNodeName.equalsIgnoreCase(CheckNegative.NODE_NAME)) {
 				steps.add(new CheckNegative(child, fieldsGroups));
-			} else if(childNodeName.equalsIgnoreCase(CheckPositive.NODE_NAME)) {
+			} else if (childNodeName.equalsIgnoreCase(CheckPositive.NODE_NAME)) {
 				steps.add(new CheckPositive(child, fieldsGroups));
-			} else if(childNodeName.equalsIgnoreCase(SelestepScreenshot.NODE_NAME)) {
+			} else if (childNodeName.equalsIgnoreCase(SelestepScreenshot.NODE_NAME)) {
 				steps.add(new SelestepScreenshot(child));
 			} else if (childNodeName.equals(AbortStep.NODE_NAME)) {
 				steps.add(new AbortStep());
-			} else if(childNodeName.equals(ReportStatusStep.NODE_NAME)) {
+			} else if (childNodeName.equals(ReportStatusStep.NODE_NAME)) {
 				steps.add(new ReportStatusStep(child));
 			}
 		}
@@ -63,7 +63,7 @@ public class StepsGroup extends EDTTestStep {
 
 	@Override
 	public void run(EDTContext context) throws EDTException, EDTAbortException {
-		for(EDTTestStep step: steps) {
+		for (EDTTestStep step : steps) {
 			step.run(context);
 		}
 	}

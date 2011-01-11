@@ -1,0 +1,39 @@
+                                          
+<workflow  name='w1' testDomain='http://PROMINPBOOK01'>
+ <init>
+	<cleanOutput/>
+	<navigate2 url='/tems/index.php'/>
+	<typeField name='inputstring1' value='dalfenas' component='text' />
+	<typeField name='password1' value='dalfenas' component='text' />
+	<press btn='Login' input='true' timeOutforPage='3000' />
+ </init>
+
+
+ <dataGroup name='userSearch'>
+  <field name='fullname' type='text'/>
+ </dataGroup>
+ 
+<process>
+	<navigate2 url='/tems/index.php?module=users&amp;action=List'/>
+	<typeDataGroup name='userSearch' />
+	<press btn='Search' input='true' timeOutforPage='3000' />
+	
+	<storeTable name='list'>
+		<columns>
+			<col name='Full Name'/>
+			<col name='Email Address' />
+		</columns>
+		<lines>
+			<line number='1' />
+		</lines>
+	</storeTable>
+
+	<report systemStatus='success'>
+		Item correctly found
+	 </report>
+	 <screenshot />
+         <abort />
+ </process>
+
+ 
+</workflow>

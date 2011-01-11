@@ -8,13 +8,15 @@ import org.cabreva.edt.EDTContext;
 import org.cabreva.edt.EDTException;
 import org.cabreva.edt.EDTFieldGroup;
 import org.cabreva.edt.EDTTestStep;
+import org.cabreva.edt.selenium.steps.SelestepTableSearch;
 import org.cabreva.edt.selenium.steps.SelestepSearchText;
 import org.jdom.Element;
 
 /**
  * Runs subFlow only if no BooleanStep in conditions succeeds.
+ * 
  * @author cabreva
- *
+ * 
  */
 public class CheckNegative extends EDTTestStep {
 
@@ -23,7 +25,7 @@ public class CheckNegative extends EDTTestStep {
 	private List<EDTFieldGroup> fieldsGroups;
 
 	public static String NODE_NAME = "checkNegative";
-	
+
 	public CheckNegative(Element node, List<EDTFieldGroup> fieldsGroups) {
 		super();
 		this.fieldsGroups = fieldsGroups;
@@ -32,25 +34,27 @@ public class CheckNegative extends EDTTestStep {
 
 	@Override
 	public void fill(Element node) {
-		
+
 		@SuppressWarnings("unchecked")
 		List<Element> elements = node.getChild("condition").getChildren();
-		
-		for(Element e:elements) {
-			if(e.getName().equalsIgnoreCase( SelestepSearchText.NODE_NAME )) {
+
+		for (Element e : elements) {
+			if (e.getName().equalsIgnoreCase(SelestepSearchText.NODE_NAME)) {
 				conditions.add(new SelestepSearchText(e));
+			} else if (e.getName().equalsIgnoreCase(SelestepTableSearch.NODE_NAME)) {
+				conditions.add(new SelestepTableSearch(e));
 			}
 		}
-		
+
 		subFlow = new StepsGroup(node.getChild("script"), fieldsGroups);
 
 	}
 
 	@Override
 	public void run(EDTContext context) throws EDTException, EDTAbortException {
-		for(BooleanStep cond: conditions) {
+		for (BooleanStep cond : conditions) {
 			cond.run(context);
-			if(cond.getResult()) {
+			if (cond.getResult()) {
 				return; // exits if any condition runs successfully
 			}
 		}

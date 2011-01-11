@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testCase result="NOK"><system status="unexpected" /><message>Selenium exception while clicking button (btn name: btnBuscar)</message></testCase>
