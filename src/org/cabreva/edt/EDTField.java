@@ -1,5 +1,10 @@
 package org.cabreva.edt;
 
+/**
+ * 
+ * @author cabreva
+ *
+ */
 public class EDTField {
 
 	private String id;

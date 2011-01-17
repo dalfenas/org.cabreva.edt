@@ -3,8 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="junit"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Cabreva/tools/selenium-rc/selenium-java-client-driver-1.0.1/selenium-java-client-driver.jar"/>
+	<classpathentry kind="lib" path="C:/fdte/tools/selenium-rc/selenium-server-1.0.3/selenium-server.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Cabreva/tools/libraries/jdom.jar"/>
+	<classpathentry kind="lib" path="C:/fdte/dev/libs/jdom-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
