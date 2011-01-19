@@ -12,7 +12,7 @@ public class SeleniumTransaction implements EDTTransaction {
 	@Override
 	public void start(String domain) {
 		this.domain = domain;
-		selenium = new DefaultSelenium("localhost", 4444, "*firefox", domain);
+		selenium = new DefaultSelenium("localhost", 4444, "*firefox 3", "http://localhost/tems/");
 		selenium.start();
 	}
 
