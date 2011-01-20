@@ -1,10 +1,10 @@
                                           
-<workflow  name='w1'>
+<workflow  name='w1' testDomain='http://PROMINPBOOK01'>
  <init>
 	<cleanOutput/>
-	<navigate2 url='http://localhost/tems/index.php'/>
-	<typeField name='inputstring1' value='admin' component='text' />
-	<typeField name='password1' value='admin' component='text' />
+	<navigate2 url='/tems/index.php'/>
+	<typeField name='inputstring1' value='dalfenas' component='text' />
+	<typeField name='password1' value='dalfenas' component='text' />
 	<press btn='Login' input='true' timeOutforPage='3000' />
  </init>
 
@@ -14,7 +14,7 @@
  </dataGroup>
 
  <process>
-	<navigate2 url='http://localhost/tems/index.php?module=users&amp;action=List'/>
+	<navigate2 url='/tems/index.php?module=users&amp;action=List'/>
 	<typeDataGroup name='userSearch' />
 	<press btn='Search' input='true' timeOutforPage='3000' />
 	<checkPositive>
@@ -32,6 +32,10 @@
          		<abort />
        		</script>	
 	</checkPositive>
+	<report systemStatus='fail'>
+		Item not found.
+	</report>
+	<screenshot />
  </process>
 
  
