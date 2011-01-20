@@ -9,6 +9,7 @@ import org.cabreva.edt.steps.BooleanStep;
 import org.jdom.Element;
 
 import com.thoughtworks.selenium.Selenium;
+import com.thoughtworks.selenium.SeleniumException;
 
 public class SelestepTableSearch extends BooleanStep {
 
@@ -57,8 +58,12 @@ public class SelestepTableSearch extends BooleanStep {
 		if (line != null && column != null) {
 			StringBuffer sb = new StringBuffer(tableName);
 			sb.append(".").append(line).append(".").append(column);
-			String celValue = selenese.getTable(sb.toString());
-			result = value.equals(celValue);
+			try {
+				String celValue = selenese.getTable(sb.toString());
+				result = value.equals(celValue);
+			} catch (SeleniumException e) {
+				result = false;
+			}
 		}
 	}
 
