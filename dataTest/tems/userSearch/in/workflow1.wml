@@ -32,6 +32,10 @@
          		<abort />
        		</script>	
 	</checkPositive>
+	<report systemStatus='fail'>
+		Item not found.
+	</report>
+	<screenshot />
  </process>
 
  
