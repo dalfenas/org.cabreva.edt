@@ -1,5 +1,5 @@
                                           
-<workflow  name='w1' testDomain='http://PROMINPBOOK01'>
+<workflow  name='w1' testDomain='localhost'>
  <init>
 	<cleanOutput/>
 	<navigate2 url='/tems/index.php'/>
