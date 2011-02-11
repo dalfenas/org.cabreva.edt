@@ -24,7 +24,7 @@ public class EDTManager {
 	}
 
 	public void run() throws JDOMException, IOException, EDTException {
-		// Inicialização do JDOM
+		// Inicializando do JDOM
 		builder = new SAXBuilder();
 
 		// Parsing do workflow
@@ -41,7 +41,7 @@ public class EDTManager {
 			}
 		});
 
-		// initicamos a transação
+		// initicamos a transacao
 		EDTTransaction transaction = new SeleniumTransaction();
 		transaction.start(wf.getDomain());
 		try {
@@ -55,7 +55,7 @@ public class EDTManager {
 				wf.run(caseContext);
 			}
 		} finally {
-			// paramos a transação antes de sair por erro
+			// paramos a transaï¿½ï¿½o antes de sair por erro
 			transaction.stop();
 		}
 
