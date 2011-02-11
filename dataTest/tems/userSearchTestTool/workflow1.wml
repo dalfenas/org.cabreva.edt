@@ -3,8 +3,8 @@
  <init>
 	<cleanOutput/>
 	<navigate2 url='/tems/index.php'/>
-	<typeField name='inputstring1' value='dalfenas' component='text' />
-	<typeField name='password1' value='dalfenas' component='text' />
+	<typeField name='inputstring1' value='admin' component='text' />
+	<typeField name='password1' value='admin' component='text' />
 	<press btn='Login' input='true' timeOutforPage='3000' />
  </init>
 
