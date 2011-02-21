@@ -34,12 +34,10 @@ public class EDTIterativeManager {
         try {
             // iniciamos o workflow
             wf.init(new EDTContext(transaction, outputFolderName));
-        } catch (Exception ex) {
+        } catch (EDTException ex) {
             stop();
-        }/*finally {
-        // paramos a transacaoo antes de sair por erro
-        stop();
-        }*/ 
+            throw ex;         
+        } 
 
 
     }
@@ -52,10 +50,7 @@ public class EDTIterativeManager {
         } //paramos a transacao caso ocorra uma excecao
         catch (Exception ex) {
             stop();
-        }
-        /*finally {
-        stop();
-        }*/
+        }       
 
     }
 
