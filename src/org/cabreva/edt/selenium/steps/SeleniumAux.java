@@ -6,8 +6,8 @@ import org.cabreva.edt.EDTField;
 import com.thoughtworks.selenium.Selenium;
 
 /**
- * Essa classe deve encapsular comportamentos similares de execução de comando, 
- * através dos variados Selestep. Deve ser visivel apenas dentro do pacote.
+ * Essa classe deve encapsular comportamentos similares de execuï¿½ï¿½o de comando, 
+ * atravï¿½s dos variados Selestep. Deve ser visivel apenas dentro do pacote.
  * @author cabreva
  *
  */
@@ -25,7 +25,7 @@ class SeleniumAux {
 				selenese.type(field.getId(), field.getValue());
 			} catch (Exception e) {
 				throw new EDTException("Selenium exception while typing value (" + field.getValue()
-						+ ") in this field: " + field, e);
+						+ ") in this field: " + field.getId(), e);
 			}
 		} else if (field.getType().equals(EDTField.TypeField.SELECT)) {
 			try {
