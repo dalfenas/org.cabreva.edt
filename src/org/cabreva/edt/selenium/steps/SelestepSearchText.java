@@ -33,6 +33,9 @@ public class SelestepSearchText extends BooleanStep {
 			if (selenese.isTextPresent(text)) {
 				result = true;
 			}
+                        else {
+                                result = false;
+                        }
 		} catch (Exception e) {
 			throw new EDTException("Selenium exception while clicking button (btn name: " + text + ")", e);
 		}
