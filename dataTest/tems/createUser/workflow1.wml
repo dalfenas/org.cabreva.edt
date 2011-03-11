@@ -30,14 +30,14 @@
        		</condition>
      		<script>
          		<report systemStatus='success'>
-          			Item correctly found
+          			User correctly inserted
 	 		</report>
 	 		<screenshot />
          		<abort />
        		</script>	
 	</checkPositive>
 	<report systemStatus='fail'>
-		Item not found.
+		User not inserted.
 	</report>
 	<screenshot />
  </process>
