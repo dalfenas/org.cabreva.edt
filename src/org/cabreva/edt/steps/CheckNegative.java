@@ -52,13 +52,21 @@ public class CheckNegative extends EDTTestStep {
 
 	@Override
 	public void run(EDTContext context) throws EDTException, EDTAbortException {
-		for (BooleanStep cond : conditions) {
+		/*for (BooleanStep cond : conditions) {
 			cond.run(context);
 			if (cond.getResult()) {
 				return; // exits if any condition runs successfully
 			}
 		}
-		subFlow.run(context);
+		subFlow.run(context);*/
+                for (BooleanStep cond : conditions) {
+			cond.run(context);
+			if (cond.getResult()) {
+				subFlow.run(context);
+				break;
+			}
+		}
+		return;
 
 	}
 
