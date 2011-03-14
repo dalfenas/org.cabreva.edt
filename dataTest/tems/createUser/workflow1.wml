@@ -36,8 +36,38 @@
          		<abort />
        		</script>	
 	</checkPositive>
+	<checkNegative>
+		<condition>
+			<tableSearch tableName='form'>
+				<target line='0' column='1' />				
+				<origin dataText = "Message is not set for message id"/>
+			</tableSearch>
+       		</condition>
+		<script>
+         		<report systemStatus='fail'>
+          			User not inserted erro no inputstring1
+	 		</report>
+	 		<screenshot />
+         		<abort />
+       		</script>
+	</checkNegative>
+	<checkNegative>
+		<condition>
+			<tableSearch tableName='form'>
+				<target line='2' column='1' />				
+				<origin dataText = "Message is not set for message id"/>
+			</tableSearch>
+       		</condition>
+     		<script>
+         		<report systemStatus='fail'>
+          			User not inserted erro no password1
+	 		</report>
+	 		<screenshot />
+         		<abort />
+       		</script>
+	</checkNegative>
 	<report systemStatus='fail'>
-		User not inserted.
+		Unexpected error
 	</report>
 	<screenshot />
  </process>
