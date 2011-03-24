@@ -1,0 +1,65 @@
+
+<workflow name='w1' testDomain='http://localhost'>
+	<init>
+		<cleanOutput />
+		<navigate2 url='/tems/index.php' />
+		<typeField name='inputstring1' value='admin' component='text' />
+		<typeField name='password1' value='admin' component='text' />
+		<press btn='Login' input='true' timeOutforPage='3000' />
+	</init>
+
+
+	<dataGroup name='userSearch'>
+		<field name='inputstring1' type='text' />
+		<field name='fullname' type='text' />
+		<field name='joindate' type='text' />
+		<field name='reportto' type='text' />
+	</dataGroup>
+
+	<process>
+		<navigate2 url='/tems/index.php?module=users&amp;action=List' />
+		<typeField name='inputstring1' origin='userSearch' component='text' />
+		<press btn='Search' input='true' timeOutforPage='3000' />
+		<checkPositive>
+			<condition>
+				<tableSearch tableName='list'>
+					<target line='1' column='1' />
+					<origin datagroup='userSearch' field='inputstring1' />
+				</tableSearch>
+			</condition>
+			<script>
+				<clickLink timeOutforPage='3000'>
+					<linkName datagroup='userSearch' field='inputstring1' />
+				</clickLink>
+				<press btn='Edit' input='true' timeOutforPage='3000' />
+				<typeField name='fullname' origin='userSearch' component='text' />
+				<typeField name='joindate' origin='userSearch' component='text' />
+				<typeField name='reportto' origin='userSearch' component='text' />
+				<press btn='Submit' input='true' timeOutforPage='3000' />
+				<checkPositive>
+					<condition>
+						<textSearch text='Users :: Browse' />
+					</condition>
+					<script>
+						<report systemStatus='success'>
+							User correctly inserted
+	 				</report>
+						<screenshot />
+						<abort />
+					</script>
+				</checkPositive>
+				<report systemStatus='fail'>
+					Error updating user
+	 		</report>
+				<screenshot />
+				<abort />
+			</script>
+		</checkPositive>
+		<report systemStatus='fail'>
+			Item not found
+		</report>
+		<screenshot />
+	</process>
+
+
+</workflow>

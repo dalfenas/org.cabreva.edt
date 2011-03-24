@@ -1,0 +1,11 @@
+<testCase type='p'>
+	<workflow name='w1' />
+	<parameters>
+		<dataGroup name='userSearch'>
+			<field name='inputstring1' value='dalfenas' /> 
+			<field name='fullname' value='Malandrao Facil' /> 
+			<field name='joindate' value='01/07/2010' /> 
+			<field name='reportto' value='admin' /> 
+		</dataGroup>
+	</parameters>
+</testCase>
