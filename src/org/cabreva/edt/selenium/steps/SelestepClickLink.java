@@ -23,47 +23,49 @@ import com.thoughtworks.selenium.Selenium;
  */
 public class SelestepClickLink extends EDTTestStep {
 
-	private String linkName = null;
-	private String timeoutPage = null;
-	private String dataGroup = null;
-	private String field = null;
-	
-	public static String NODE_NAME = "clickLink";
+    private String linkName = null;
+    private String timeoutPage = null;
+    private String dataGroup = null;
+    private String field = null;
+    public static String NODE_NAME = "clickLink";
 
-	public SelestepClickLink(Element node) {
-		super();
-		fill(node);
-	}
+    public SelestepClickLink(Element node) {
+        super();
+        fill(node);
+    }
 
-	@Override
-	public void fill(Element node) {
-		timeoutPage = node.getAttributeValue("timeOutforPage");
-		linkName = node.getAttributeValue("link");
-		if (linkName == null) {
-			Element origin = node.getChild("linkName");
-			dataGroup = origin.getAttributeValue("datagroup");
-			field=origin.getAttributeValue("field");
-		}
-	}
+    @Override
+    public void fill(Element node) {
+        timeoutPage = node.getAttributeValue("timeOutforPage");
+        linkName = node.getAttributeValue("link");
+        if (linkName == null) {
+            Element origin = node.getChild("linkName");
+            dataGroup = origin.getAttributeValue("datagroup");
+            field = origin.getAttributeValue("field");
+        }
+    }
 
-	@Override
-	public void run(EDTContext context) throws EDTException, EDTAbortException {
-		Selenium selenese = ((SeleniumTransaction) context.getTransaction()).getSelenium();
-		try {
-			if (linkName!=null) {
-				selenese.click("link="+linkName);
-			} else {
-				   EDTFieldGroup group = context.getTestCase().getFieldsGroupByName(dataGroup);
-				   linkName = group.getFieldValue(field);			
-		           selenese.click("link="+linkName);
-			}
-			if (timeoutPage != null) {
-				selenese.waitForPageToLoad(timeoutPage);
-			}
-		} catch (Exception e) {
-			throw new EDTException("Selenium exception while clicking button (btn name: " + linkName + ")", e);
-		}
+    @Override
+    public void run(EDTContext context) throws EDTException, EDTAbortException {
+        Selenium selenese = ((SeleniumTransaction)context.getTransaction()).getSelenium();
+        try {
+            if (linkName != null) {
+                selenese.click("link=" + linkName);
+            }
+            else {
+                EDTFieldGroup group = context.getTestCase().getFieldsGroupByName(dataGroup);
+                linkName = group.getFieldValue(field);
+                selenese.click("link=" + linkName);
+                //lrb 14/04/2011 - é necessária a reinicialização de linkName após ele ter sido utilizado
+                linkName = null;
+            }
+            if (timeoutPage != null) {
+                selenese.waitForPageToLoad(timeoutPage);
+            }
+        }
+        catch (Exception e) {
+            throw new EDTException("Selenium exception while clicking button (btn name: " + linkName + ")", e);
+        }
 
-	}
-
+    }
 }
